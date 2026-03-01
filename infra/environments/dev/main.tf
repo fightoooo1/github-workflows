@@ -7,3 +7,5 @@ module "logs_bucket" {
 resource "random_id" "suffix" {
   byte_length = 2
 }
+
+# trigger CI
