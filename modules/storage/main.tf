@@ -1,5 +1,11 @@
 resource "google_storage_bucket" "bucket" {
-  name                        = var.name
-  location                    = var.location
+  name     = var.name
+  location = var.location
+
   uniform_bucket_level_access = true
+  public_access_prevention    = "enforced"
+
+  versioning {
+    enabled = true
+  }
 }
