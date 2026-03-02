@@ -5,3 +5,9 @@ variable "name" {
 variable "location" {
   type = string
 }
+
+
+variable "log_bucket" {
+  type        = string
+  description = "Bucket name to store access logs"
+}

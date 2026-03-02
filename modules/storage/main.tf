@@ -8,4 +8,12 @@ resource "google_storage_bucket" "bucket" {
   versioning {
     enabled = true
   }
+
+  dynamic "logging" {
+    for_each = var.log_bucket == null ? [] : [1]
+
+    content {
+      log_bucket = var.log_bucket
+    }
+  }
 }
