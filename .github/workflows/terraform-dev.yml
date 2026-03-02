@@ -23,15 +23,23 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v3
 
-      - name: Run Checkov (IaC security scan)
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: infra/environments/dev
-          framework: terraform
-
-
-      - run: |
+      - name: Terraform Init
+        run: |
           cd infra/environments/dev
           terraform init -input=false
+
+      - name: Terraform Validate
+        run: |
+          cd infra/environments/dev
           terraform validate
+
+      - name: Terraform Plan
+        run: |
+          cd infra/environments/dev
           terraform plan -no-color
+
+      - name: Run Checkov (IaC Security Scan)
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: infra/
+          quiet: true
